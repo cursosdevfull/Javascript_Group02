@@ -1,1 +1,1 @@
-# Javascript_Group02
+# Curso de Javascript - Grupo 02
