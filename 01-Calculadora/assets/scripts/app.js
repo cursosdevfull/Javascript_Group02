@@ -7,6 +7,8 @@ function add(num1, num2) {
   return result;
 }
 
+alert(result);
+
 /* const additionalResult = add(10, 20);
  currentResult = additionalResult; */
 currentResult = add(10, 20);
