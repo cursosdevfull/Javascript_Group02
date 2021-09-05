@@ -6,14 +6,17 @@ function calculationResult(calculationType) {
   const enteredNumber = getUserNumberInput();
   const initialResult = currentResult;
 
-  /*   if (
-    calculationType !== 'ADD' &&
-    calculationType !== 'SUBTRACT' &&
-    calculationType !== 'MULTIPLY' &&
-    calculationType !== 'DIVIDE'
+  console.log('enteredNumber', enteredNumber);
+
+  if (
+    (calculationType !== 'ADD' &&
+      calculationType !== 'SUBTRACT' &&
+      calculationType !== 'MULTIPLY' &&
+      calculationType !== 'DIVIDE') ||
+    (!enteredNumber && enteredNumber !== 0)
   ) {
     return;
-  } */
+  }
 
   if (
     calculationType === 'ADD' ||
@@ -63,7 +66,7 @@ function createAndWriteOutput(operator, resultBeforeCalc, calcNumber) {
 }
 
 function getUserNumberInput() {
-  return +userInput.value;
+  return parseInt(userInput.value);
 }
 
 function add() {
