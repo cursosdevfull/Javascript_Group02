@@ -10,6 +10,13 @@ let hasBonusLife = true;
 
 adjustHealthBars(choseMaxLife);
 
+function reset() {
+  currentMonsterHealth = choseMaxLife;
+  currentPlayerHealth = choseMaxLife;
+  hasBonusLife = true;
+  resetGame(choseMaxLife);
+}
+
 function endRound() {
   const initialPlayerHealth = currentPlayerHealth;
   const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
@@ -29,6 +36,14 @@ function endRound() {
     alert('Perdí');
   } else if (currentMonsterHealth <= 0 && currentPlayerHealth <= 0) {
     alert('Empaté');
+  }
+
+  if (
+    (currentMonsterHealth <= 0 && currentPlayerHealth > 0) ||
+    (currentPlayerHealth <= 0 && currentMonsterHealth > 0) ||
+    (currentMonsterHealth <= 0 && currentPlayerHealth <= 0)
+  ) {
+    reset();
   }
 }
 
