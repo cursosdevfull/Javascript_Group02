@@ -6,12 +6,22 @@ const HEALTH_VALUE = 20;
 const choseMaxLife = 100;
 let currentMonsterHealth = choseMaxLife;
 let currentPlayerHealth = choseMaxLife;
+let hasBonusLife = true;
 
 adjustHealthBars(choseMaxLife);
 
 function endRound() {
+  const initialPlayerHealth = currentPlayerHealth;
   const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
   currentPlayerHealth -= playerDamage;
+
+  if (currentPlayerHealth <= 0 && hasBonusLife) {
+    hasBonusLife = false;
+    removeBonusLife();
+    currentPlayerHealth = initialPlayerHealth;
+    setPlayerHealth(currentPlayerHealth);
+    alert('Murió pero la cura lo revivió');
+  }
 
   if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
     alert('Gané');
@@ -44,9 +54,12 @@ function strongAttackHandler() {
 }
 
 function healPlayerHandler() {
-  if (currentPlayerHealth <= 0 || currentMonsterHealth <= 0) {
+  if (currentPlayerHealth <= 0 || currentMonsterHealth <= 0 || !hasBonusLife) {
     return;
   }
+
+  hasBonusLife = false;
+  removeBonusLife();
 
   let healthValue;
   if (currentPlayerHealth >= choseMaxLife - HEALTH_VALUE) {
