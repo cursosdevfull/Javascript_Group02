@@ -3,6 +3,7 @@ const STRONG_ATTACK_VALUE = 17;
 const MONSTER_ATTACK_VALUE = 15;
 const HEALTH_VALUE = 20;
 const MAX_LIFE = 100;
+const DEFAULT_LIFES = 100;
 
 const MODE_ATTACK = 'ATTACK';
 const MODE_STRONG_ATTACK = 'STRONG_ATTACK';
@@ -13,14 +14,30 @@ const LOG_EVENT_MONSTER_ATTACK = 'MONSTER_ATTACK';
 const LOG_EVENT_PLAYER_HEALTH = 'PLAYER_HEALTH';
 const LOG_EVENT_GAME_OVER = 'GAME_OVER';
 
-const enteredValue = prompt(
-  'Ingrese el máximo de vida para el jugador y para el mounstro',
-  '100'
-);
-let choseMaxLife = parseInt(enteredValue);
+function getMaxLifeValues() {
+  const enteredValue = prompt(
+    'Ingrese el máximo de vida para el jugador y para el mounstro',
+    `${DEFAULT_LIFES}`
+  );
 
-if (isNaN(choseMaxLife) || choseMaxLife <= 0) {
-  choseMaxLife = MAX_LIFE;
+  const parsedLife = parseInt(enteredValue, 10);
+  if (isNaN(parsedLife) || parsedLife <= 0) {
+    throw { msg: 'Valor inválido ingresado por el usuario' };
+  }
+
+  return parsedLife;
+}
+
+let choseMaxLife;
+
+try {
+  choseMaxLife = getMaxLifeValues();
+} catch (error) {
+  console.log(error);
+  choseMaxLife = DEFAULT_LIFES;
+  alert(
+    `Ocurrió un error y se usará el valor defecto de ${DEFAULT_LIFES} para las vidas`
+  );
 }
 
 let currentMonsterHealth = choseMaxLife;
