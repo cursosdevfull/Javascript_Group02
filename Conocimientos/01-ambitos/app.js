@@ -1,3 +1,11 @@
+console.log(username);
+var username = 'sergio.hidalgo';
+
+console.log(username);
+
+console.log(password);
+let password = '123'; // SOLO FUNCIONA CON VAR
+
 /* const nombre = 'Andrea';
 
 function printInfoUser() {
@@ -13,7 +21,7 @@ console.log('nombre', nombre); */
 //console.dir(window);
 //console.log('name', name);
 
-const name = 'Sergio';
+/* const name = 'Sergio';
 let hobbies;
 
 if (name === 'Sergio') {
@@ -21,4 +29,4 @@ if (name === 'Sergio') {
   console.log('hobbies', hobbies);
 }
 
-console.log('hobbies', hobbies);
+console.log('hobbies', hobbies); */
