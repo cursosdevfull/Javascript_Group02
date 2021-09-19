@@ -14,10 +14,8 @@ const getPlayerChoice = () => {
   ).toUpperCase();
 
   if (selection !== ROCK && selection !== PAPER && selection !== SCISSOR) {
-    alert(
-      `La selección es ${ROCK}, ${PAPER} o ${SCISSOR}. Hemos escogido ${DEFAULT_USER_CHOICE} por usted.`
-    );
-    return DEFAULT_USER_CHOICE;
+    alert(`La selección es entre ${ROCK}, ${PAPER} o ${SCISSOR}.`);
+    return;
   }
 
   return selection;
@@ -28,7 +26,7 @@ const getComputerChoice = () => {
   return randomValue < 0.34 ? ROCK : randomValue < 0.67 ? PAPER : SCISSOR;
 };
 
-const getWinner = (cChoice, pChoice) =>
+const getWinner = (cChoice, pChoice = DEFAULT_USER_CHOICE) =>
   cChoice === pChoice
     ? RESULT_DRAW
     : (pChoice === ROCK && cChoice === SCISSOR) ||
@@ -48,9 +46,17 @@ startBtn.addEventListener('click', () => {
   console.log('Game is starting...');
   const playerChoice = getPlayerChoice();
   const computerChoice = getComputerChoice();
-  const winner = getWinner(computerChoice, playerChoice);
 
-  let message = `Su elección: ${playerChoice}, la elección de la computadora: ${computerChoice}. Resultado = `;
+  let winner;
+  if (playerChoice) {
+    winner = getWinner(computerChoice, playerChoice);
+  } else {
+    winner = getWinner(computerChoice);
+  }
+
+  let message = `Su elección: ${
+    playerChoice || DEFAULT_USER_CHOICE
+  }, la elección de la computadora: ${computerChoice}. Resultado = `;
   message +=
     winner === RESULT_DRAW
       ? 'Empate'
