@@ -8,7 +8,7 @@ const RESULT_DRAW = 'DRAW';
 const RESULT_PLAYER_WIN = 'PLAYER_WIN';
 const RESULT_COMPUTER_WIN = 'COMPUTER_WIN';
 
-const getPlayerChoice = function () {
+const getPlayerChoice = () => {
   const selection = prompt(
     `Elija ${ROCK}, ${PAPER} o ${SCISSOR}`
   ).toUpperCase();
@@ -23,12 +23,12 @@ const getPlayerChoice = function () {
   return selection;
 };
 
-const getComputerChoice = function () {
+const getComputerChoice = () => {
   const randomValue = Math.random();
   return randomValue < 0.34 ? ROCK : randomValue < 0.67 ? PAPER : SCISSOR;
 };
 
-const getWinner = function (cChoice, pChoice) {
+const getWinner = (cChoice, pChoice) => {
   if (cChoice === pChoice) {
     return RESULT_DRAW;
   } else if (
@@ -44,7 +44,7 @@ const getWinner = function (cChoice, pChoice) {
 
 let gameIsRunning = false;
 
-startBtn.addEventListener('click', function () {
+startBtn.addEventListener('click', () => {
   if (gameIsRunning) {
     return;
   }
