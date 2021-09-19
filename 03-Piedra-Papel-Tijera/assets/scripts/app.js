@@ -1,10 +1,8 @@
-startGame();
-function startGame() {
-  console.log('Game is starting...');
-}
-
-/* const startGame = function start() {
+const startGame = function () {
   console.log('Game is starting...');
 };
- */
-startBtn.addEventListener('click', startGame);
+
+//startBtn.addEventListener('click', startGame);
+startBtn.addEventListener('click', function () {
+  console.log('Game is starting...');
+});
