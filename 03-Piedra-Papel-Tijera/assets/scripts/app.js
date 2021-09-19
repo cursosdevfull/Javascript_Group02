@@ -28,19 +28,14 @@ const getComputerChoice = () => {
   return randomValue < 0.34 ? ROCK : randomValue < 0.67 ? PAPER : SCISSOR;
 };
 
-const getWinner = (cChoice, pChoice) => {
-  if (cChoice === pChoice) {
-    return RESULT_DRAW;
-  } else if (
-    (pChoice === ROCK && cChoice === SCISSOR) ||
-    (pChoice === PAPER && cChoice === ROCK) ||
-    (pChoice === SCISSOR && cChoice === PAPER)
-  ) {
-    return RESULT_PLAYER_WIN;
-  } else {
-    return RESULT_COMPUTER_WIN;
-  }
-};
+const getWinner = (cChoice, pChoice) =>
+  cChoice === pChoice
+    ? RESULT_DRAW
+    : (pChoice === ROCK && cChoice === SCISSOR) ||
+      (pChoice === PAPER && cChoice === ROCK) ||
+      (pChoice === SCISSOR && cChoice === PAPER)
+    ? RESULT_PLAYER_WIN
+    : RESULT_COMPUTER_WIN;
 
 let gameIsRunning = false;
 
@@ -53,7 +48,17 @@ startBtn.addEventListener('click', () => {
   console.log('Game is starting...');
   const playerChoice = getPlayerChoice();
   const computerChoice = getComputerChoice();
-  const winner = getWinner(playerChoice, computerChoice);
-  console.log('winner', winner);
+  const winner = getWinner(computerChoice, playerChoice);
+
+  let message = `Su elección: ${playerChoice}, la elección de la computadora: ${computerChoice}. Resultado = `;
+  message +=
+    winner === RESULT_DRAW
+      ? 'Empate'
+      : winner === RESULT_PLAYER_WIN
+      ? 'Usted ganó'
+      : 'La computadora ganó';
+
+  alert(message);
+
   gameIsRunning = false;
 });
