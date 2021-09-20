@@ -21,7 +21,7 @@ console.log(sum([10, 20, 30, 40, 50, 60, 70])); */
 
 console.log(sum(10, 20, 30, 40, 50, 60, 70, 80)); */
 
-const authorization = (...rolesAllowed) => {
+/* const authorization = (...rolesAllowed) => {
   const rolesUser = ['OPERATOR', 'AUDITOR'];
   let userAuthorized = false;
 
@@ -34,4 +34,15 @@ const authorization = (...rolesAllowed) => {
   return userAuthorized;
 };
 
-console.log(authorization('ADMIN', 'AUDITOR'));
+console.log(authorization('ADMIN', 'AUDITOR')); */
+
+const sum = (a, b, ...numbers) => {
+  let accum = a + b;
+  for (const number of numbers) {
+    accum += number;
+  }
+
+  return accum;
+};
+
+console.log(sum(10, 20, 30, 40, 50));
